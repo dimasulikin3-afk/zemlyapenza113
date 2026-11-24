@@ -1,0 +1,753 @@
+index>html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Большой справочник о землеустройстве: понятия, виды работ, геодезия, картография, почвы, право, технологии и источники.">
+  <title>Землеустройство — территория в порядке</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #202b24;
+      --muted: #68736a;
+      --paper: #f4f2e9;
+      --white: #fffef9;
+      --green: #315c46;
+      --green-dark: #1d392b;
+      --lime: #d3e47b;
+      --sand: #e3dac5;
+      --line: #d8d8cb;
+      --orange: #c8794f;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "Manrope", Arial, sans-serif;
+      --mono: "DM Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.7;
+    }
+    a { color: inherit; }
+    .topline {
+      min-height: 34px;
+      padding: 7px 5vw;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: #dfe8d9;
+      background: var(--green-dark);
+      font: 11px var(--mono);
+      letter-spacing: .05em;
+    }
+    .topline a { color: var(--lime); text-decoration: none; }
+    header {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      background: rgba(244,242,233,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      width: min(1200px, 90%);
+      min-height: 76px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: var(--lime);
+      background: var(--green);
+      border-radius: 50% 50% 50% 8px;
+      font: 18px var(--mono);
+      transform: rotate(-8deg);
+    }
+    .brand small {
+      display: block;
+      margin-top: -3px;
+      color: var(--muted);
+      font: 9px var(--mono);
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 6px; }
+    .nav-links a {
+      padding: 9px 11px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 999px;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--white);
+      background: var(--green);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: var(--green-dark);
+    }
+    .hero::before, .hero::after {
+      position: absolute;
+      content: "";
+      pointer-events: none;
+      border: 1px solid rgba(211,228,123,.23);
+      border-radius: 50%;
+      transform: rotate(-25deg);
+    }
+    .hero::before { width: 720px; height: 390px; right: -140px; top: -80px; }
+    .hero::after { width: 820px; height: 480px; right: -190px; top: -120px; }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, 90%);
+      min-height: 460px;
+      margin: auto;
+      padding: 80px 0 68px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 50px;
+    }
+    .eyebrow {
+      color: var(--lime);
+      font: 11px var(--mono);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { line-height: 1.12; }
+    h1 {
+      max-width: 760px;
+      margin: 20px 0;
+      font: 700 clamp(42px, 6vw, 76px)/1.04 var(--serif);
+      letter-spacing: -.04em;
+    }
+    .hero p { max-width: 640px; color: #d4ddd4; font-size: 16px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button {
+      display: inline-block;
+      padding: 12px 18px;
+      border: 1px solid var(--lime);
+      border-radius: 3px;
+      color: var(--green-dark);
+      background: var(--lime);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .button.outline { color: white; background: transparent; }
+    .hero-map {
+      min-height: 270px;
+      position: relative;
+      border: 1px solid rgba(211,228,123,.35);
+      background:
+        linear-gradient(35deg, transparent 48%, rgba(211,228,123,.18) 49%, transparent 50%),
+        linear-gradient(125deg, transparent 48%, rgba(211,228,123,.18) 49%, transparent 50%),
+        repeating-radial-gradient(ellipse at 52% 53%, transparent 0 24px, rgba(211,228,123,.22) 25px 26px, transparent 27px 42px);
+      clip-path: polygon(11% 0, 100% 8%, 91% 100%, 0 82%);
+    }
+    .map-label {
+      position: absolute;
+      padding: 5px 8px;
+      color: var(--lime);
+      background: var(--green-dark);
+      font: 10px var(--mono);
+    }
+    .map-label.one { top: 22%; left: 16%; }
+    .map-label.two { right: 10%; bottom: 24%; }
+    .map-dot {
+      position: absolute;
+      top: 48%; left: 52%;
+      width: 12px; height: 12px;
+      border: 3px solid var(--green-dark);
+      background: var(--lime);
+      border-radius: 50%;
+      box-shadow: 0 0 0 7px rgba(211,228,123,.18);
+    }
+
+    .intro-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+    .intro-strip div {
+      padding: 22px 5vw;
+      border-right: 1px solid var(--line);
+    }
+    .intro-strip strong {
+      display: block;
+      color: var(--green);
+      font: 700 22px var(--serif);
+    }
+    .intro-strip span { color: var(--muted); font-size: 11px; }
+
+    main { width: min(1200px, 90%); margin: 0 auto; }
+    .contents {
+      margin: 64px 0 36px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+    .section-kicker {
+      color: var(--orange);
+      font: 11px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .contents h2, .section-heading {
+      margin: 7px 0 18px;
+      font: 700 34px var(--serif);
+      letter-spacing: -.03em;
+    }
+    .contents-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .contents a {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      color: var(--green);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .contents a:hover { background: #eef1df; }
+
+    .tabbar {
+      position: sticky;
+      z-index: 10;
+      top: 76px;
+      display: flex;
+      overflow-x: auto;
+      gap: 5px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .tab-button {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border: 0;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font: 700 11px var(--sans);
+    }
+    .tab-button.active, .tab-button:hover {
+      color: white;
+      background: var(--green);
+    }
+    .tab-panel {
+      display: none;
+      padding: 42px 0 58px;
+      border-bottom: 1px solid var(--line);
+      animation: appear .25s ease;
+    }
+    .tab-panel.active { display: block; }
+    @keyframes appear {
+      from { opacity: .2; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .tab-panel > p { max-width: 850px; color: #4c594f; }
+    .lead {
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+    .card h3 { margin: 0 0 10px; font: 700 20px var(--serif); }
+    .card p, .card li { color: #536055; font-size: 13px; }
+    .card .number { color: var(--orange); font: 12px var(--mono); }
+    .callout {
+      margin: 22px 0;
+      padding: 20px 22px;
+      border-left: 4px solid var(--orange);
+      background: #eee9da;
+    }
+    .callout strong { color: var(--green); }
+    .definition {
+      margin: 20px 0;
+      padding: 24px;
+      border: 1px solid #cdd5a2;
+      background: #edf0dc;
+      font: 600 17px/1.65 var(--serif);
+    }
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps li {
+      position: relative;
+      min-height: 45px;
+      margin: 12px 0;
+      padding: 8px 0 8px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0; top: 4px;
+      color: var(--orange);
+      font: 12px var(--mono);
+    }
+    .table-wrap { overflow-x: auto; margin: 24px 0; }
+    table { width: 100%; border-collapse: collapse; background: var(--white); font-size: 12px; }
+    th, td { padding: 13px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: white; background: var(--green); }
+    code, .mono { font-family: var(--mono); }
+    .source-list { padding-left: 20px; }
+    .source-list li { margin: 10px 0; }
+    .source-list a { color: var(--green); overflow-wrap: anywhere; }
+    .small { color: var(--muted); font-size: 11px; }
+    .back-top {
+      display: inline-block;
+      margin: 18px 0;
+      color: var(--green);
+      font: 11px var(--mono);
+      text-decoration: none;
+    }
+    footer {
+      margin-top: 60px;
+      padding: 35px 5vw;
+      color: #dae3d8;
+      background: var(--green-dark);
+      font-size: 12px;
+    }
+    .footer-inner {
+      width: min(1200px, 100%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .nav { align-items: flex-start; padding: 14px 0; flex-direction: column; }
+      .nav-links { width: 100%; }
+      .hero-inner { grid-template-columns: 1fr; padding: 58px 0; }
+      .hero-map { min-height: 210px; }
+      .intro-strip { grid-template-columns: repeat(2, 1fr); }
+      .contents-grid { grid-template-columns: repeat(2, 1fr); }
+      .tabbar { top: 0; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .topline { font-size: 9px; }
+      .hero p { font-size: 14px; }
+      .contents { padding: 18px; }
+      .contents-grid, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .intro-strip div { padding: 17px 6vw; }
+      .section-heading, .contents h2 { font-size: 29px; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topline">
+    <span>СПРАВОЧНИК · ЗЕМЛЯ · ТЕРРИТОРИИ · ДАННЫЕ</span>
+    <a href="#sources">ПЕРЕЙТИ К ИСТОЧНИКАМ ↓</a>
+  </div>
+
+  <header id="top">
+    <nav class="nav" aria-label="Главная навигация">
+      <a class="brand" href="#top">
+        <span class="brand-mark">⌖</span>
+        <span>Территория<span style="color:var(--orange)">.</span><small>путеводитель по землеустройству</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#contents">Содержание</a>
+        <a href="#guide">Разделы</a>
+        <a href="#sources">Источники</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Земля — основа пространства и хозяйства</div>
+        <h1>Землеустройство:<br>читать территорию</h1>
+        <p>Большой вводный справочник о том, как изучают, планируют, организуют и охраняют землю. От границ участка и картографии — до агроландшафтов, геоинформационных систем и земельного права.</p>
+        <div class="hero-buttons">
+          <a class="button" href="#guide">Открыть справочник ↓</a>
+          <a class="button outline" href="#sources">Список источников</a>
+        </div>
+      </div>
+      <div class="hero-map" aria-label="Стилизованная топографическая карта">
+        <span class="map-label one">КВАРТАЛ 04</span>
+        <span class="map-label two">УЧАСТОК 18</span>
+        <span class="map-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="intro-strip">
+    <div><strong>01 / Изучить</strong><span>собрать сведения о территории</span></div>
+    <div><strong>02 / Спланировать</strong><span>определить рациональное использование</span></div>
+    <div><strong>03 / Организовать</strong><span>согласовать границы и угодья</span></div>
+    <div><strong>04 / Охранять</strong><span>сохранить почвы и ресурсы</span></div>
+  </div>
+
+  <main>
+    <section class="contents" id="contents">
+      <div class="section-kicker">Навигация по справочнику</div>
+      <h2>Содержание</h2>
+      <div class="contents-grid">
+        <a href="#guide" data-open="basics">01. Понятие и задачи</a>
+        <a href="#guide" data-open="objects">02. Объекты и участники</a>
+        <a href="#guide" data-open="types">03. Виды землеустройства</a>
+        <a href="#guide" data-open="process">04. Этапы и документация</a>
+        <a href="#guide" data-open="geodesy">05. Геодезия и картография</a>
+        <a href="#guide" data-open="soil">06. Почвы и охрана земель</a>
+        <a href="#guide" data-open="law">07. Право и кадастр</a>
+        <a href="#guide" data-open="tech">08. Технологии и профессии</a>
+      </div>
+    </section>
+
+    <section id="guide">
+      <div class="section-kicker">Материал для знакомства с темой</div>
+      <h2 class="section-heading">Разделы справочника</h2>
+
+      <div class="tabbar" role="tablist" aria-label="Разделы справочника">
+        <button class="tab-button active" role="tab" aria-selected="true" data-tab="basics">01 Основы</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="objects">02 Объекты</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="types">03 Виды работ</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="process">04 Процесс</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="geodesy">05 Измерения</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="soil">06 Почвы и экология</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="law">07 Право и кадастр</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="tech">08 Технологии</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="career">09 Профессии</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="glossary">10 Словарь</button>
+      </div>
+
+      <article class="tab-panel active" id="basics" role="tabpanel">
+        <div class="section-kicker">01 · Понятие и назначение</div>
+        <h2 class="section-heading">Что такое землеустройство</h2>
+        <p class="lead">Землеустройство — система мероприятий, решений и работ, связанных с изучением состояния земель, планированием их рационального использования и охраны, организацией территории, установлением или уточнением границ и подготовкой соответствующих материалов.</p>
+
+        <div class="definition">В широком смысле землеустройство отвечает на три взаимосвязанных вопроса: <strong>где проходят границы, как устроена территория и как использовать землю, не разрушая её ресурсный потенциал.</strong></div>
+
+        <div class="grid-3">
+          <div class="card"><div class="number">ЗАДАЧА 01</div><h3>Устроить пространство</h3><p>Связать участки, угодья, дороги, водные объекты, защитные полосы и инфраструктуру в понятную территориальную систему.</p></div>
+          <div class="card"><div class="number">ЗАДАЧА 02</div><h3>Повысить рациональность</h3><p>Согласовать использование земель с природными свойствами, хозяйственными потребностями, ограничениями и планами развития.</p></div>
+          <div class="card"><div class="number">ЗАДАЧА 03</div><h3>Предотвратить деградацию</h3><p>Выявлять эрозию, засоление, заболачивание, загрязнение и другие риски, предлагать меры предупреждения и восстановления.</p></div>
+        </div>
+
+        <h3>Основные принципы</h3>
+        <ul>
+          <li><strong>Системность:</strong> решение для одного участка должно учитывать соседние земли и территорию в целом.</li>
+          <li><strong>Обоснованность:</strong> решения опираются на измерения, обследования, карты и проверяемые данные.</li>
+          <li><strong>Учет природных условий:</strong> рельеф, климат, почвы, вода и экосистемы влияют на допустимые способы использования.</li>
+          <li><strong>Согласование интересов:</strong> учитываются права собственников и пользователей, общественные потребности и законные ограничения.</li>
+          <li><strong>Охрана земель:</strong> продуктивность почв, природные функции и безопасность территории рассматриваются как долгосрочная ценность.</li>
+          <li><strong>Актуальность:</strong> сведения о границах, состоянии и использовании территории должны своевременно обновляться.</li>
+        </ul>
+
+        <div class="callout"><strong>Важно различать.</strong> Землеустройство, кадастровый учет, межевание, территориальное планирование и управление земельными ресурсами связаны, но это не одно и то же. Их цели, исполнители, процедуры и юридические последствия различаются.</div>
+      </article>
+
+      <article class="tab-panel" id="objects" role="tabpanel">
+        <div class="section-kicker">02 · Территория и участники</div>
+        <h2 class="section-heading">Объекты, субъекты и земельные угодья</h2>
+        <p class="lead">Землеустройство рассматривает не только отдельные участки. Его объектом может быть территория муниципального образования, сельскохозяйственная организация, группа участков, природная зона или иной пространственный комплекс — в зависимости от задачи и законодательства.</p>
+
+        <div class="grid-2">
+          <div class="card"><h3>Что изучают</h3><ul><li>земельные участки и их контуры;</li><li>границы административных и территориальных образований;</li><li>сельскохозяйственные и другие угодья;</li><li>рельеф, гидрографию, почвы и растительность;</li><li>дороги, каналы, защитные полосы и инфраструктуру;</li><li>ограничения, зоны с особыми условиями использования и сервитуты;</li><li>фактическое использование, состояние и подверженность рискам.</li></ul></div>
+          <div class="card"><h3>Кто участвует</h3><ul><li>собственники, арендаторы и землепользователи;</li><li>органы государственной власти и местного самоуправления;</li><li>кадастровые инженеры и геодезисты;</li><li>землеустроители, почвоведы, агрономы и экологи;</li><li>проектные организации и специалисты по ГИС;</li><li>организации, использующие территорию, и заинтересованные жители;</li><li>уполномоченные органы контроля и регистрации.</li></ul></div>
+        </div>
+
+        <h3>Земельные угодья</h3>
+        <p>Угодья — участки территории, различающиеся характером и способом использования. В сельскохозяйственном контексте традиционно выделяют пашню, залежь, многолетние насаждения, сенокосы и пастбища. В более широком учете могут отдельно рассматриваться лесные площади, болота, земли под водой, дороги, застройка и другие элементы. Точный состав и классификация зависят от нормативной системы.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Что анализируют</th><th>Примеры характеристик</th><th>Зачем это нужно</th></tr></thead>
+            <tbody>
+              <tr><td>Границы</td><td>координаты, площадь, смежность, доступ</td><td>понять конфигурацию и пространственное положение</td></tr>
+              <tr><td>Природные условия</td><td>уклон, экспозиция, водный режим, климат</td><td>оценить пригодность и ограничения</td></tr>
+              <tr><td>Почвенный покров</td><td>тип, плодородие, загрязнение, эрозия</td><td>выбрать режим использования и защитные меры</td></tr>
+              <tr><td>Хозяйственная структура</td><td>угодья, дороги, водопои, инфраструктура</td><td>сделать использование территории удобным и связным</td></tr>
+              <tr><td>Правовой режим</td><td>права, категория, разрешенное использование, ограничения</td><td>проверить допустимость планируемой деятельности</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="tab-panel" id="types" role="tabpanel">
+        <div class="section-kicker">03 · Направления деятельности</div>
+        <h2 class="section-heading">Виды и содержание землеустроительных работ</h2>
+        <p class="lead">Состав работ определяется задачей, масштабом территории, действующим законодательством и техническим заданием. Ниже — обзор направлений, которые часто встречаются в землеустроительной практике и смежных дисциплинах.</p>
+
+        <div class="grid-3">
+          <div class="card"><div class="number">01</div><h3>Территориальное землеустройство</h3><p>Изучение и организация территорий на уровне региона, муниципалитета, хозяйства или иной планировочной единицы. Может включать анализ использования земель и подготовку предложений по организации пространства.</p></div>
+          <div class="card"><div class="number">02</div><h3>Межевание и границы</h3><p>Комплекс кадастровых работ по определению, восстановлению или уточнению границ участков и подготовке документов для кадастрового учета — в рамках применимых правил.</p></div>
+          <div class="card"><div class="number">03</div><h3>Внутрихозяйственная организация</h3><p>Планирование структуры земель сельскохозяйственного предприятия: полей, севооборотов, дорог, угодий, защитных насаждений и других элементов.</p></div>
+          <div class="card"><div class="number">04</div><h3>Инвентаризация земель</h3><p>Сбор и сопоставление сведений о границах, использовании, состоянии и характеристиках территории для выявления несоответствий и пробелов в данных.</p></div>
+          <div class="card"><div class="number">05</div><h3>Охрана и восстановление</h3><p>Обследование деградации, разработка противоэрозионных, водоохранных, рекультивационных и иных мер в соответствии с условиями конкретного проекта.</p></div>
+          <div class="card"><div class="number">06</div><h3>Планировочная основа</h3><p>Подготовка пространственных схем и исходных материалов, которые согласуются с документами планирования территории и отраслевыми проектами.</p></div>
+        </div>
+
+        <div class="callout"><strong>Не всякая карта — землеустроительный проект.</strong> Карта может быть справочным или аналитическим материалом. Проектная и кадастровая документация должна отвечать требованиям конкретной процедуры, иметь корректные исходные данные и быть подготовлена надлежащими специалистами.</div>
+      </article>
+
+      <article class="tab-panel" id="process" role="tabpanel">
+        <div class="section-kicker">04 · От задачи к результату</div>
+        <h2 class="section-heading">Типовой ход работ и документация</h2>
+        <p class="lead">Единого универсального сценария нет: порядок зависит от того, выполняется ли инвентаризация территории, проект землеустройства, кадастровые работы, обследование почв или комплексное планирование.</p>
+
+        <ol class="steps">
+          <li><strong>Постановка задачи.</strong> Определяют территорию, цель, заказчика, требуемый результат, ограничения, сроки и критерии приемки.</li>
+          <li><strong>Сбор исходных данных.</strong> Изучают правовые документы, кадастровые и картографические сведения, архивы, материалы дистанционного зондирования и данные обследований.</li>
+          <li><strong>Подготовка основы.</strong> Проверяют систему координат, точность и дату источников, сводят слои, фиксируют расхождения и пробелы.</li>
+          <li><strong>Полевые работы.</strong> При необходимости выполняют геодезические измерения, обследование участков, фотосъемку, почвенные и экологические наблюдения.</li>
+          <li><strong>Анализ территории.</strong> Сопоставляют фактические границы и использование, природные условия, права, ограничения и потребности.</li>
+          <li><strong>Разработка решения.</strong> Формируют варианты организации территории, оценивают последствия и выбирают обоснованный вариант.</li>
+          <li><strong>Согласование и проверка.</strong> Уточняют замечания с заказчиком и заинтересованными сторонами; предусмотренные законом материалы проходят необходимые процедуры.</li>
+          <li><strong>Выдача и использование результата.</strong> Передают карты, расчеты, ведомости координат, текстовые материалы или документы установленного формата.</li>
+          <li><strong>Обновление.</strong> После изменения границ, инфраструктуры, природного состояния или правовых сведений данные пересматривают.</li>
+        </ol>
+
+        <h3>Что может входить в комплект материалов</h3>
+        <div class="grid-2">
+          <div class="card"><h3>Графическая часть</h3><p>Схемы расположения, ситуационные и тематические карты, планы границ, экспликации угодий, профили или чертежи — состав зависит от задачи.</p></div>
+          <div class="card"><h3>Текстовая часть</h3><p>Обоснование, описание исходных данных и методики, таблицы площадей, результаты обследований, предложения, расчеты и пояснения.</p></div>
+          <div class="card"><h3>Пространственные данные</h3><p>Векторные слои, координаты характерных точек, метаданные, система координат, сведения о точности и происхождении данных.</p></div>
+          <div class="card"><h3>Юридически значимые документы</h3><p>Состав и формат устанавливаются соответствующей правовой процедурой. Не следует подменять обязательную документацию произвольной схемой или отчетом.</p></div>
+        </div>
+
+        <div class="callout"><strong>Контроль качества:</strong> проверяйте систему координат, единицы измерения, топологию полигонов, замыкание контуров, пересечения, дату подложки, источник границ и соответствие результата техническому заданию.</div>
+      </article>
+
+      <article class="tab-panel" id="geodesy" role="tabpanel">
+        <div class="section-kicker">05 · Измерить и изобразить</div>
+        <h2 class="section-heading">Геодезия, картография и пространственные данные</h2>
+        <p class="lead">Геодезия дает методы определения положения точек и объектов на местности. Картография превращает пространственные данные в читаемое изображение. Геоинформационные системы связывают геометрию с атрибутами и позволяют анализировать территорию.</p>
+
+        <div class="grid-3">
+          <div class="card"><h3>GNSS-приемники</h3><p>Используют сигналы спутниковых навигационных систем. Точность зависит от оборудования, метода наблюдений, условий приема, поправок и системы координат.</p></div>
+          <div class="card"><h3>Тахеометры</h3><p>Измеряют углы и расстояния; применяются для съемки деталей местности, разбивочных работ и определения координат точек по установленной методике.</p></div>
+          <div class="card"><h3>Нивелиры</h3><p>Используются для определения превышений и создания высотной основы. Результаты важны для рельефа, дренажа, дорог и водоотведения.</p></div>
+          <div class="card"><h3>Аэрофотосъемка</h3><p>Снимки с самолета или беспилотной платформы могут служить основой для ортофотопланов и моделей местности при корректной обработке и контроле точности.</p></div>
+          <div class="card"><h3>Дистанционное зондирование</h3><p>Спутниковые и воздушные данные помогают наблюдать изменения земного покрова, растительности, водных объектов и следов нарушений.</p></div>
+          <div class="card"><h3>ГИС</h3><p>Система хранения, редактирования, отображения и анализа пространственной информации: геометрия, таблицы атрибутов, связи и метаданные.</p></div>
+        </div>
+
+        <h3>Координаты и точность</h3>
+        <p>Положение объекта описывают в определенной системе координат и проекции. Одни и те же координатные числа в разных системах обозначают разные места. При переходе между системами необходимы корректные параметры преобразования. Для юридически значимых работ требования к методике и точности задаются нормативными документами и техническим заданием.</p>
+
+        <h3>Картографическое оформление</h3>
+        <ul>
+          <li>масштаб определяет, сколько подробностей можно надежно показать;</li>
+          <li>легенда объясняет условные знаки и цвета;</li>
+          <li>север, координатная сетка, рамка и масштабная линейка помогают ориентироваться;</li>
+          <li>источник, дата, система координат и авторство должны быть указаны в метаданных или на карте;</li>
+          <li>символика должна различать реальные границы, проектные предложения и ориентировочные линии.</li>
+        </ul>
+
+        <div class="callout"><strong>Осторожно с точностью:</strong> увеличение изображения на экране не повышает точность исходных данных. Спутниковый снимок, кадастровая карта или навигационное приложение не всегда подходят для установления юридической границы на местности.</div>
+      </article>
+
+      <article class="tab-panel" id="soil" role="tabpanel">
+        <div class="section-kicker">06 · Природная основа</div>
+        <h2 class="section-heading">Почвы, сельское хозяйство и охрана земель</h2>
+        <p class="lead">Почва — важная часть земельного ресурса и сложная природная система. Землеустроительные решения должны учитывать не только площадь участка, но и его продуктивность, водный режим, устойчивость к нагрузкам и экологическое состояние.</p>
+
+        <div class="grid-2">
+          <div class="card"><h3>Что оценивают</h3><ul><li>почвенные разновидности и их пространственное распределение;</li><li>механический состав, строение профиля и содержание органического вещества;</li><li>реакцию среды, засоленность и обеспеченность элементами питания;</li><li>уклоны, водный режим, глубину грунтовых вод;</li><li>эрозию, уплотнение, переувлажнение и загрязнение;</li><li>состояние растительности, продуктивность и устойчивость к нагрузке.</li></ul></div>
+          <div class="card"><h3>Типовые угрозы</h3><ul><li>водная эрозия и смыв плодородного слоя;</li><li>ветровая эрозия и дефляция;</li><li>засоление и осолонцевание;</li><li>заболачивание или иссушение;</li><li>уплотнение тяжелой техникой;</li><li>загрязнение химическими и биологическими веществами;</li><li>потеря гумуса и сокращение биоразнообразия.</li></ul></div>
+        </div>
+
+        <h3>Меры рационального использования и охраны</h3>
+        <div class="grid-3">
+          <div class="card"><h3>Противоэрозионные</h3><p>Террасирование, контурное размещение обработки, травяные полосы, защитные насаждения и регулирование стока — при проектировании по местным условиям.</p></div>
+          <div class="card"><h3>Агротехнические</h3><p>Севообороты, покровные культуры, сохранение растительных остатков, минимизация лишних проходов техники и щадящая обработка.</p></div>
+          <div class="card"><h3>Водно-мелиоративные</h3><p>Регулирование водного режима, дренаж или орошение, защита водотоков и рациональное управление водными ресурсами.</p></div>
+        </div>
+        <p>Перечень мер нельзя выбирать только по названию почвы или общей рекомендации: необходимы обследование, оценка риска, инженерные расчеты и проверка правовых требований. Для сельхозземель важны также устойчивость хозяйства, доступность участков, логистика и совместимость землепользования с охраной природных объектов.</p>
+      </article>
+
+      <article class="tab-panel" id="law" role="tabpanel">
+        <div class="section-kicker">07 · Россия: общий ориентир</div>
+        <h2 class="section-heading">Земельное право, кадастр и ограничения</h2>
+        <p class="lead">Правовая информация этого раздела дана как навигация по основным понятиям. Законодательство меняется, а конкретный порядок зависит от обстоятельств и региона. Перед сделкой, проектом или подачей документов проверяйте актуальные редакции актов и сведения официальных реестров.</p>
+
+        <div class="grid-2">
+          <div class="card"><h3>Понятия, которые важно не смешивать</h3><ul><li><strong>Земельный участок</strong> — индивидуально определенная часть земной поверхности с характеристиками, позволяющими описать ее как объект права.</li><li><strong>Кадастровый учет</strong> — внесение установленных сведений о недвижимости в государственный реестр.</li><li><strong>Межевание</strong> — бытовое название комплекса кадастровых работ по границам участка.</li><li><strong>Землеустройство</strong> — более широкая система мероприятий по изучению, организации и охране земель.</li><li><strong>Градостроительное планирование</strong> — отдельная область, регулирующая развитие территорий и параметры застройки.</li></ul></div>
+          <div class="card"><h3>Что проверяют перед использованием участка</h3><ul><li>сведения о правообладателе и зарегистрированных правах;</li><li>категорию земель и вид разрешенного использования;</li><li>описание границ и наличие уточненных координат;</li><li>обременения, сервитуты и ограничения;</li><li>зоны с особыми условиями использования территории;</li><li>градостроительные регламенты и территориальное зонирование;</li><li>доступ к участку, водные и природоохранные ограничения.</li></ul></div>
+        </div>
+
+        <h3>Нормативная карта темы</h3>
+        <p>Для российского контекста полезно начать с Земельного кодекса РФ; федерального закона о землеустройстве; законодательства о государственной регистрации недвижимости и кадастровой деятельности; норм о почвах, охране окружающей среды и особо охраняемых природных территориях; градостроительного законодательства. Применимость конкретного акта и редакцию необходимо проверять по официальным источникам.</p>
+
+        <div class="callout"><strong>Практическое правило.</strong> Публичная карта удобна для предварительной ориентации, но сама по себе не заменяет выписку из реестра, документы на участок, геодезические измерения, кадастровые работы или официальное заключение.</div>
+        <p class="small">Этот раздел не толкует индивидуальную правовую ситуацию и не является юридическим заключением. Для конкретного участка обратитесь к профильному специалисту и проверьте актуальные официальные сведения.</p>
+      </article>
+
+      <article class="tab-panel" id="tech" role="tabpanel">
+        <div class="section-kicker">08 · Цифровые инструменты</div>
+        <h2 class="section-heading">ГИС, данные и современные технологии</h2>
+        <p class="lead">Цифровое землеустройство объединяет полевые измерения, кадастровые сведения, дистанционные наблюдения, природные данные и планировочные документы. Главная ценность — не сама карта, а надежные, совместимые и объяснимые данные.</p>
+
+        <div class="grid-3">
+          <div class="card"><h3>Векторные данные</h3><p>Точки, линии и полигоны описывают опорные точки, границы, дороги, гидрографию, здания и угодья.</p></div>
+          <div class="card"><h3>Растровые данные</h3><p>Снимки, цифровые модели высот, карты уклонов и тематические поверхности хранят значения в сетке ячеек.</p></div>
+          <div class="card"><h3>Метаданные</h3><p>Описывают происхождение, дату, масштаб, точность, систему координат, ограничения использования и ответственного поставщика.</p></div>
+          <div class="card"><h3>Топологический контроль</h3><p>Находит незамкнутые полигоны, дубликаты, пересечения, разрывы и другие ошибки пространственной модели.</p></div>
+          <div class="card"><h3>Спутниковый мониторинг</h3><p>Помогает отслеживать изменения земного покрова и состояния растительности. Выводы требуют учета сезонности, облачности и разрешения снимка.</p></div>
+          <div class="card"><h3>3D-моделирование</h3><p>Цифровые модели рельефа и поверхности используются в анализе уклонов, видимости, стока и инженерного планирования.</p></div>
+        </div>
+
+        <h3>Контроль качества пространственных данных</h3>
+        <ul>
+          <li>согласовать систему координат и единицы измерения;</li>
+          <li>проверить дату и источник каждого слоя;</li>
+          <li>отделить официальные сведения от аналитических и ориентировочных;</li>
+          <li>зафиксировать точность и метод получения координат;</li>
+          <li>провести геометрическую, атрибутивную и топологическую проверку;</li>
+          <li>сохранить оригинальные данные и журнал изменений;</li>
+          <li>обеспечить понятные названия слоев и устойчивые правила доступа.</li>
+        </ul>
+      </article>
+
+      <article class="tab-panel" id="career" role="tabpanel">
+        <div class="section-kicker">09 · Образование и работа</div>
+        <h2 class="section-heading">Профессии и навыки</h2>
+        <div class="grid-3">
+          <div class="card"><h3>Инженер-землеустроитель</h3><p>Анализирует территорию, готовит проектные и технические материалы, увязывает земельные решения с природными и хозяйственными условиями.</p></div>
+          <div class="card"><h3>Кадастровый инженер</h3><p>Выполняет предусмотренные законодательством кадастровые работы и готовит документы установленного формата в пределах своей компетенции.</p></div>
+          <div class="card"><h3>Геодезист</h3><p>Выполняет измерения, создает геодезическую основу, определяет координаты и высоты, контролирует точность пространственных работ.</p></div>
+          <div class="card"><h3>Специалист по ГИС</h3><p>Обрабатывает пространственные данные, строит карты, автоматизирует анализ и организует геобазы данных.</p></div>
+          <div class="card"><h3>Почвовед или агроном</h3><p>Оценивает свойства почв, плодородие, пригодность земель и подходящие способы использования и охраны.</p></div>
+          <div class="card"><h3>Эколог и планировщик</h3><p>Изучает воздействие на природные системы и помогает согласовать развитие территории с экологическими и общественными задачами.</p></div>
+        </div>
+        <h3>Полезные компетенции</h3>
+        <p>Основы геодезии и картографии, земельное и кадастровое законодательство, почвоведение, экология, пространственная аналитика, работа с базами данных, полевые обследования, техническое письмо, коммуникация с заказчиками и внимательность к качеству исходных данных.</p>
+      </article>
+
+      <article class="tab-panel" id="glossary" role="tabpanel">
+        <div class="section-kicker">10 · Краткий словарь</div>
+        <h2 class="section-heading">Термины</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Термин</th><th>Краткое объяснение</th></tr></thead>
+            <tbody>
+              <tr><td>Земельный ресурс</td><td>Земля как природная основа, территория и объект хозяйственного и общественного использования.</td></tr>
+              <tr><td>Угодье</td><td>Часть земель, выделяемая по характеру и способу использования.</td></tr>
+              <tr><td>Граница участка</td><td>Линия, описывающая пределы участка; юридическое значение зависит от установленных процедур и сведений учета.</td></tr>
+              <tr><td>Кадастровый квартал</td><td>Единица кадастрового деления территории в соответствующей системе учета.</td></tr>
+              <tr><td>Экспликация</td><td>Таблица, поясняющая состав и площади земельных контуров или угодий на плане.</td></tr>
+              <tr><td>Рекультивация</td><td>Комплекс работ по восстановлению земель, нарушенных хозяйственной деятельностью.</td></tr>
+              <tr><td>Эрозия</td><td>Разрушение и перемещение почвы водой или ветром.</td></tr>
+              <tr><td>Сервитут</td><td>Право ограниченного пользования чужим участком в случаях и порядке, установленных законом.</td></tr>
+              <tr><td>ГИС</td><td>Геоинформационная система для работы с пространственными данными.</td></tr>
+              <tr><td>Ортофотоплан</td><td>Геометрически исправленное изображение местности, привязанное к координатной основе.</td></tr>
+              <tr><td>ЗОУИТ</td><td>Зона с особыми условиями использования территории; конкретные ограничения определяются правовыми актами и сведениями реестра.</td></tr>
+              <tr><td>Метаданные</td><td>Сведения о происхождении, свойствах, точности и условиях использования набора данных.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section id="sources" style="padding:48px 0">
+      <div class="section-kicker">Проверяемые материалы</div>
+      <h2 class="section-heading">Источники и полезные ссылки</h2>
+      <p class="lead">Нормативные акты следует читать в актуальной редакции. Официальные реестры и карты могут требовать авторизации, а открытые картографические данные не всегда имеют юридическую силу.</p>
+
+      <h3>Официальные правовые источники России</h3>
+      <ol class="source-list">
+        <li><a href="https://pravo.gov.ru/" target="_blank" rel="noopener">Официальный интернет-портал правовой информации</a> — публикация нормативных правовых актов.</li>
+        <li><a href="https://www.consultant.ru/document/cons_doc_LAW_33773/" target="_blank" rel="noopener">Земельный кодекс Российской Федерации</a> — справочная страница документа; сверяйте редакцию с официальной публикацией.</li>
+        <li><a href="https://www.consultant.ru/document/cons_doc_LAW_39924/" target="_blank" rel="noopener">Федеральный закон № 78-ФЗ «О землеустройстве»</a> — справочная страница документа; проверяйте актуальный текст.</li>
+        <li><a href="https://www.consultant.ru/document/cons_doc_LAW_182661/" target="_blank" rel="noopener">Федеральный закон № 218-ФЗ «О государственной регистрации недвижимости»</a> — справочная страница документа.</li>
+        <li><a href="https://www.consultant.ru/document/cons_doc_LAW_28165/" target="_blank" rel="noopener">Федеральный закон № 221-ФЗ «О кадастровой деятельности»</a> — справочная страница документа.</li>
+        <li><a href="https://rosreestr.gov.ru/" target="_blank" rel="noopener">Росреестр</a> — официальный сайт ведомства, сервисы и сведения о регистрации недвижимости.</li>
+        <li><a href="https://nspd.gov.ru/" target="_blank" rel="noopener">Национальная система пространственных данных</a> — пространственные сервисы и картографическая информация России.</li>
+      </ol>
+
+      <h3>Научные и образовательные материалы</h3>
+      <ol class="source-list">
+        <li><a href="https://www.fao.org/soils-portal/en/" target="_blank" rel="noopener">FAO Soils Portal</a> — материалы Продовольственной и сельскохозяйственной организации ООН о почвах.</li>
+        <li><a href="https://www.fao.org/land-water/land/land-governance/en/" target="_blank" rel="noopener">FAO: Land Governance</a> — материалы по управлению землей и земельным ресурсам.</li>
+        <li><a href="https://www.usgs.gov/landsat-missions" target="_blank" rel="noopener">USGS Landsat Missions</a> — описание программы спутниковых наблюдений Landsat.</li>
+        <li><a href="https://www.ogc.org/standards/" target="_blank" rel="noopener">Open Geospatial Consortium Standards</a> — стандарты обмена геопространственными данными.</li>
+        <li><a href="https://qgis.org/" target="_blank" rel="noopener">QGIS</a> — открытая ГИС и учебные материалы по пространственному анализу.</li>
+        <li><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a> — открытая карта; условия использования и атрибуции необходимо соблюдать.</li>
+      </ol>
+
+      <div class="callout"><strong>Как пользоваться ссылками.</strong> Для юридических решений найдите акт по номеру и названию на официальном портале правовой информации и проверьте редакцию, дату вступления изменений в силу и применимость к вашему случаю. Справочные системы удобны для поиска, но итоговую проверку делайте по официальным публикациям.</div>
+      <p class="small">Ссылки приведены для дальнейшего изучения. Автор сайта не гарантирует доступность внешних ресурсов и не является источником официальных сведений о конкретном земельном участке.</p>
+      <a class="back-top" href="#top">↑ В НАЧАЛО СТРАНИЦЫ</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><strong>Территория.</strong><br>Учебный путеводитель по землеустройству</div>
+      <div>Образовательный материал · Проверяйте актуальность законодательства и данных</div>
+    </div>
+  </footer>
+
+  <script>
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const panels = document.querySelectorAll(".tab-panel");
+
+    function openTab(id) {
+      tabButtons.forEach(button => {
+        const selected = button.dataset.tab === id;
+        button.classList.toggle("active", selected);
+        button.setAttribute("aria-selected", selected ? "true" : "false");
+      });
+      panels.forEach(panel => panel.classList.toggle("active", panel.id === id));
+    }
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => openTab(button.dataset.tab));
+    });
+
+    document.querySelectorAll("[data-open]").forEach(link => {
+      link.addEventListener("click", () => openTab(link.dataset.open));
+    });
+  </script>
+</body>
+</html>
